@@ -1,0 +1,9 @@
+.link-hover-style:hover{
+    background-color: #3f70cc9a;
+    color: white;
+}
+.active-link-style{
+    background-color: #3f71cc;
+    color: white;
+}
+
