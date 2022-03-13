@@ -2,6 +2,9 @@ import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 import React, { useEffect, useState } from 'react';
 import Friend from '../Friend/Friend';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 const Friends = () => {
     const {user} = useAuth();
@@ -13,12 +16,14 @@ const Friends = () => {
     console.log(getUser);
     return (
         <div>
-            <h1>This is friends</h1>
+            <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">My Friends List</h1>
+            <Link to="/peoples" className="btn btn-primary">
+               <FontAwesomeIcon icon={faUserGroup} /> Make More Friends
+            </Link>
             <div className="row">
                 {
                     getUser?.friends?.length > 0 &&
                     getUser?.friends?.map(friend => <Friend friend={friend}></Friend>)
-                    // getUser?.friends?.map(friend => <li>{friend}</li>)
                 }
                 
             </div>

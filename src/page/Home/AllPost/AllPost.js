@@ -15,9 +15,9 @@ const AllPost = () => {
     console.log(posts)
     return (
         <div>
-            <h1>ALL post</h1>
+            <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">All Posts</h1>
             <div className="row">
-                { 
+                {
                     posts.length > 0 &&
                     posts.map(post => <AllPostDetails key={post._id} post={post}></AllPostDetails>)
                 }

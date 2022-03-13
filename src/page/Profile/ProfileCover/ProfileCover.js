@@ -17,7 +17,8 @@ const ProfileCover = ({user}) => {
                 src={user?.photoURL ? user?.photoURL : userPng} alt=""
             />
             <br />
-            <h4 className="mt-3 fw-bolder">{user?.name}</h4>
+            <h1 className="border-bottom border-4 mt-3 text-center border-danger text-danger fw-bolder">{user?.name}</h1>
+            <h6 className="text-start">email: {user?.email}</h6>
         </div>
     );
 };

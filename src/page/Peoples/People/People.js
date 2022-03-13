@@ -1,3 +1,5 @@
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import userPng from '../../../images/images/user.png';
@@ -32,7 +34,7 @@ const People = (props) => {
                         }
                         <h5>{name}</h5>
                         <button onClick={() => props.addFriendEmail(email)} className="btn btn-primary">
-                            Follow
+                            <FontAwesomeIcon icon={faUserPlus}/> Follow
                         </button>
                         <Link to={`/profile/${email}`} className="btn btn-info ms-2">
                             View Profile

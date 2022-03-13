@@ -9,13 +9,18 @@ import axios from 'axios';
 const Profile = () => {
     const { user } = useAuth();
     const { profileEmail } = useParams();
-    const [getUser, setGetUser] = useState({})
+    const [getUser, setGetUser] = useState({});
+    const [userPosts, setUserPosts] = useState([]);
     useEffect(() => {
         axios(`http://localhost:5000/users?email=${profileEmail}`)
-            .then(res => {
-                setGetUser(res.data);
-            })
-    }, [profileEmail])
+            .then(res => setGetUser(res.data))
+    }, [profileEmail]);
+
+    useEffect(() => {
+        axios(`http://localhost:5000/userPosts/${profileEmail}`)
+        .then(res => setUserPosts(res.data))
+    }, [profileEmail]);
+
     return (
         <div>
             <ProfileCover user={getUser} />
@@ -25,8 +30,8 @@ const Profile = () => {
                     <UserPost user={getUser} />
                 }
             </div>
-
-            <UserAllPost />
+            
+            <UserAllPost userPosts={userPosts} />
         </div>
     );
 };

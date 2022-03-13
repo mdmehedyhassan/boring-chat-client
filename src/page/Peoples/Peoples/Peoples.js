@@ -2,6 +2,9 @@ import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 import React, { useEffect, useState } from 'react';
 import People from '../People/People';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 const Peoples = () => {
     const { user } = useAuth();
@@ -52,7 +55,10 @@ const Peoples = () => {
     const mainUserFriends = mainUser?.friends
     return (
         <div>
-            <h1 className='text-center border-bottom border-4 border-primary text-primary fw-bolder'>The All People</h1>
+            <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">The All People</h1>
+            <Link to="/friends" className="btn btn-primary">
+                <FontAwesomeIcon icon={faUserGroup} /> See Your Friends List
+            </Link>
             <div className="row">
                 {
                     peoples.map(people => (
@@ -60,16 +66,6 @@ const Peoples = () => {
                         <People key={people._id} people={people} mainUserFriends={mainUserFriends} addFriendEmail={addFriendEmail} ></People>
                     ))
                 }
-                {/* {
-                    mainUserFriends &&
-                    peoples.map(people => (
-                        people.email !== mainUser.email &&
-                        mainUserFriends.map(friend => (
-                            people.email !== friend &&
-                            <People key={people._id} people={people} addFriendEmail={addFriendEmail} ></People>
-                        ))
-                    ))
-                } */}
             </div>
         </div>
     );
