@@ -12,10 +12,12 @@ import SignIn from './Login/SignIn/SignIn';
 import Login from './Login/Login/Login';
 import AuthProvider from './context/AuthProvider';
 import UserPrivateRoute from './privateRoute/UserPrivateRoute';
+import LoginPrivateRoute from './privateRoute/LoginPrivateRoute';
+import Peoples from './page/Peoples/Peoples/Peoples';
 
 AOS.init();
 
-//#00facd
+//#0b5ed7
 function App() {
   return (
     <AuthProvider>
@@ -30,12 +32,15 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route element={<UserPrivateRoute />}>
+                <Route path="/peoples" element={<Peoples />} />
                 <Route path="/friends" element={<Friends />} />
                 <Route path="/message" element={<Message />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:profileEmail" element={<Profile />} />
               </Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signIn" element={<SignIn />} />
+              <Route element={<LoginPrivateRoute />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signIn" element={<SignIn />} />
+              </Route>
             </Routes>
           </div>
         </Box>

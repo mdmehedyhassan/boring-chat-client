@@ -20,7 +20,6 @@ const drawerWidth = 150;
 
 function NavHeader(props) {
     const {user, logoutHandler} = useAuth();
-    console.log(user?.email)
 
     const location = useLocation();
     const path = location.pathname;
@@ -34,9 +33,9 @@ function NavHeader(props) {
     };
 
     const drawer = (
-        <div className={`text-center h-100 ${isLightTheme ? 'bg-light': "bg-dark"}`}>
+        <div style={{minHeight: '300%'}} className={`text-center ${isLightTheme ? 'bg-light': "bg-dark"}`}>
             {/* <Toolbar /> */}
-            <Link to="/profile" style={{ textDecoration: 'none' }}>
+            <Link to={`/profile/${user?.email}`} style={{ textDecoration: 'none' }}>
                 <div className="d-flex justify-content-center m-1 ">
                     <div style={{ height: 55, width: 55, overflow: 'hidden', background: '#3f71cc', textAlign: 'center', borderRadius: '50%', color: 'white' }}>
                         {
@@ -47,7 +46,6 @@ function NavHeader(props) {
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
                         }
-                        <img src="https://htmlcolorcodes.com/assets/images/color-picker/html-color-codes-color-wheel-analogous-thumb.png" alt="" />
                     </div>
                 </div>
                 <h5 className="fw-bolder">{user?.displayName}</h5>
@@ -56,6 +54,11 @@ function NavHeader(props) {
             <Link style={{ textDecoration: 'none' }} to="/">
                 <List className={`link-hover-style ${path === '/' ? "active-link-style" : ""}`}>
                     Home
+                </List>
+            </Link>
+            <Link style={{ textDecoration: 'none' }} to="/peoples">
+                <List className={`link-hover-style ${path === '/peoples' ? "active-link-style" : ""}`}>
+                    Peoples
                 </List>
             </Link>
             <Link style={{ textDecoration: 'none' }} to="/friends">

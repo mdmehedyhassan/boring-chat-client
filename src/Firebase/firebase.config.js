@@ -1,4 +1,4 @@
-console.log('.env.local', process.env)
+// console.log('.env.local', process.env)
 export const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
