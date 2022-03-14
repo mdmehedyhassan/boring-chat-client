@@ -1,4 +1,4 @@
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ const People = (props) => {
             {
                 allInOne.includes(email) === false &&
                 <div className="col-xxl-3 col-lg-4 col-sm-6 mt-2">
-                    <div className="p-2 text-center h-100" style={{ border: '1px solid gray', borderRadius: '10px' }}>
+                    <div className="p-2 text-center h-100 people-global-style" style={{ borderRadius: '10px' }}>
                         {
                             img ?
                                 <img
@@ -33,11 +33,11 @@ const People = (props) => {
                                 />
                         }
                         <h5>{name}</h5>
-                        <button onClick={() => props.addFriendEmail(email)} className="btn btn-primary">
-                            <FontAwesomeIcon icon={faUserPlus}/> Follow
+                        <button onClick={() => props.addFriendEmail(email)} className="btn btn-primary m-1">
+                            <FontAwesomeIcon icon={faUserPlus} /> Follow
                         </button>
-                        <Link to={`/profile/${email}`} className="btn btn-info ms-2">
-                            View Profile
+                        <Link to={`/profile/${email}`} className="btn btn-secondary m-1">
+                            <FontAwesomeIcon icon={faEye} /> View Profile
                         </Link>
                     </div>
                 </div>

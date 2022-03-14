@@ -1,44 +1,96 @@
 import axios from 'axios';
+import './Friends.css';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import userPng from '../../../images/images/user.png';
+import useAuth from '../../../hooks/useAuth';
+import { useForm } from "react-hook-form";
 
 const Friend = (props) => {
+    const { register, handleSubmit, reset } = useForm();
     console.log(props);
+    const { user } = useAuth()
     const [friend, setFriend] = useState({});
     const { img, name, email } = friend;
     useEffect(() => {
         axios(`http://localhost:5000/users?email=${props.friend}`)
             .then(res => setFriend(res.data));
     }, [props.friend])
-    console.log(friend)
-    return (
-        <div className="col-lg-6 mt-2">
-            <div className="p-2 h-100 d-flex justify-content-between align-items-center" style={{ border: '1px solid gray', borderRadius: '10px' }}>
-                <div className='d-flex align-items-center'>
-                    {
-                        img ?
-                            <img
-                                style={{ width: '50px', height: '50px', borderRadius: '50%' }}
-                                src={img} alt=""
-                            />
-                            :
-                            <img
-                                style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'gray' }}
-                                src={userPng} alt=""
-                            />
+
+    const sendMessageHandler = (emailStyle) => {
+        document.getElementById(`messageInput${emailStyle}`).style.display = 'block';
+        const allFriendsMessage = document.getElementsByClassName('friendMessage');
+        for (let i = 0; i < allFriendsMessage.length; i++) {
+            allFriendsMessage[i].style.display = 'none';
+        }
+    }
+    const onSubmit = data => {
+        const sendMessage = {
+            senderName: user?.displayName,
+            senderEmail: user?.email,
+            message: data.message,
+            receiverName: name,
+            receiverEmail: email,
+            time: new Date().toGMTString()
+        }
+
+        axios.post(`http://localhost:5000/sendMessage`, sendMessage)
+            .then(res => {
+                if (res.data?.insertedId) {
+                    alert('Message Send Successfully!!');
+                    document.getElementById(`messageInput${email}`).style.display = 'none';
+                    const allFriendsMessage = document.getElementsByClassName('friendMessage');
+                    for (let i = 0; i < allFriendsMessage.length; i++) {
+                        allFriendsMessage[i].style.display = 'block';
                     }
-                    <Link to={`/profile/${email}`} style={{ textDecoration: 'none' }}>
-                        <h5 className="p-2">{name}</h5>
-                    </Link>
-                </div>
+                    reset();
+                }
+            })
+    };
+    return (
 
-                <div>
-                    <button className="btn btn-primary"> message</button>
-                </div>
+        <div className=" mt-2">
+            <div className="friendMessage" id={`friendMessage${email}`}>
+                <div className="p-2 d-flex justify-content-between align-items-center friend-global-style" style={{ borderRadius: '10px' }}>
+                    <div className='d-flex align-items-center'>
+                        {
+                            img ?
+                                <img
+                                    style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+                                    src={img} alt=""
+                                />
+                                :
+                                <img
+                                    style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'gray' }}
+                                    src={userPng} alt=""
+                                />
+                        }
+                        <Link to={`/profile/${email}`} style={{ textDecoration: 'none' }}>
+                            <h5 className="p-2">{name}</h5>
+                        </Link>
+                    </div>
 
+                    <div>
+                        <button
+                            onClick={() => sendMessageHandler(email)}
+                            className="btn btn-primary"
+                        > message</button>
+                    </div>
+
+                </div>
             </div>
 
+            <div className="messageInput p-2 " id={`messageInput${email}`}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <h6 ><small className="text-secondary">Message To:</small> {name}</h6>
+                    <textarea
+                        className="form-control"
+                        {...register("message", { required: true })}
+                        placeholder="Enter Your Message.."
+                    />
+                    <input type="submit" value="send" className="btn btn-primary mt-2" />
+                </form>
+            </div>
         </div>
     );
 };

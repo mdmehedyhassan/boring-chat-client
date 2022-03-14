@@ -1,13 +1,23 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import userPng from '../../../images/images/user.png';
+import { useForm } from "react-hook-form";
+import useAuth from '../../../hooks/useAuth';
+
 
 const AllPostDetails = (props) => {
+    const { user } = useAuth();
+    const { register, handleSubmit, reset } = useForm();
+
     const [isLoveReact, setIsLoveReact] = useState(false);
-    const { name, email, img, date, post } = props.post;
-    const differentTime = new Date() - Date.parse(date);
+    const { _id, name, email, postComments, img, date, post } = props.post;
+    const presentGMTTime = new Date().toGMTString();
+    const presentTime = Date.parse(presentGMTTime);
+    const postTime = Date.parse(date);
+    const differentTime = presentTime - postTime;
     console.log(differentTime);
     const minute = 1000 * 60;
     const hour = minute * 60;
@@ -26,12 +36,66 @@ const AllPostDetails = (props) => {
     else if (days > 0) {
         postTimes = days + ' days ago';
     }
-    else{
+    else {
         postTimes = null;
     }
-    
+
+    const onSubmit = data => {
+        if (user?.email) {
+            if (postComments) {
+                const updateComment = [
+                    ...postComments,
+                    {
+                        commentAuthors: user?.displayName,
+                        authorEmails: user?.email,
+                        comments: data.comment
+                    }
+                ]
+                axios.put(`http://localhost:5000/posts/comment/${_id}`, updateComment)
+                    .then(res => {
+                        console.log(res)
+                        if (res.data?.acknowledged) {
+                            axios(`http://localhost:5000/posts`)
+                                .then(res => {
+                                    let getAllPosts = []
+                                    res.data.map(post => getAllPosts = [post, ...getAllPosts])
+                                    props.setPosts(getAllPosts);
+                                })
+                        }
+                        reset();
+                    })
+            }
+            if (!postComments) {
+                const updateComment = [
+                    {
+                        commentAuthors: user?.displayName,
+                        authorEmails: user?.email,
+                        comments: data.comment
+                    }
+                ]
+                axios.put(`http://localhost:5000/posts/comment/${_id}`, updateComment)
+                    .then(res => {
+                        console.log(res)
+                        if (res.data?.acknowledged) {
+                            axios(`http://localhost:5000/posts`)
+                                .then(res => {
+                                    let getAllPosts = []
+                                    res.data.map(post => getAllPosts = [post, ...getAllPosts])
+                                    props.setPosts(getAllPosts);
+                                })
+                        }
+                        reset();
+                    })
+            }
+        }
+        if (!user?.email) {
+            alert('Sorry You cannot comment with out any account')
+        }
+        console.log(data)
+    };
+    console.log(postComments)
     return (
-        <div className="mt-3 p-3 border-bottom border-2 border-primary">
+        <div className="mt-3 p-3 post-global-style">
             <div className="d-flex">
                 <div style={{ height: 55, width: 55, overflow: 'hidden', background: '#3f71cc', textAlign: 'center', borderRadius: '50%', color: 'white' }}>
                     {
@@ -42,7 +106,7 @@ const AllPostDetails = (props) => {
                     }
                 </div>
                 <div className="ps-2 text-secondary">
-                    <Link to={`/profile/${email}`} style={{textDecoration: 'none' }}>
+                    <Link to={`/profile/${email}`} style={{ textDecoration: 'none' }}>
                         <h5>{name}</h5>
                     </Link>
                     <p><i>{postTimes}</i></p>
@@ -50,10 +114,36 @@ const AllPostDetails = (props) => {
             </div>
             <div>
                 <p>{post}</p>
-                <span style={{cursor: 'pointer'}} onClick={() => setIsLoveReact(!isLoveReact)} className={`fs-4 ${isLoveReact ? 'text-danger' : 'text-secondary'}`}>
+                <span style={{ cursor: 'pointer' }} onClick={() => setIsLoveReact(!isLoveReact)} className={`fs-4 ${isLoveReact ? 'text-danger' : 'text-secondary'}`}>
                     <FontAwesomeIcon icon={faHeart} />
                 </span>
+                {
+                    postComments &&
+                    <div style={{ width: '80%', marginLeft: '10%' }}>
+                        <p style={{ borderBottom: '1px solid gray' }}>All Comments</p>
+                        {
+                            postComments?.map((getComment, index) => <div
+                                key={index}
+                            >
+                                <p>
+                                    <Link to={`/profile/${getComment.authorEmails}`} style={{textDecoration: 'none' }}>
+                                        {getComment.commentAuthors}
+                                    </Link>
+                                    : {getComment.comments}
+                                </p>
+                            </div>
+                            )
+                        }
+                    </div>
+                }
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input {...register("comment", { required: true })} className="form-control" placeholder="Write your comment..." />
+
+                    <input type="submit" value="comment" className="btn btn-secondary mt-2" />
+                </form>
             </div>
+
+
         </div>
     );
 };

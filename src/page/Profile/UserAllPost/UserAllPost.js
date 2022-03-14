@@ -6,7 +6,6 @@ const UserAllPost = (props) => {
     return (
         <div className="mt-5">
             <h1>See all Post</h1>
-            {posts?.length}
             {
                 posts?.length > 0 &&
                 posts?.map(post => <AllPostDetails key={post._id} post={post}></AllPostDetails>)

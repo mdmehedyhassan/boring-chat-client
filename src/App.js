@@ -6,7 +6,6 @@ import AOS from 'aos';
 import Box from '@mui/material/Box';
 import { Toolbar } from '@mui/material';
 import Friends from './page/Friends/Friends/Friends';
-import Message from './page/Message/Message/Message';
 import Profile from './page/Profile/Profile/Profile';
 import SignIn from './Login/SignIn/SignIn';
 import Login from './Login/Login/Login';
@@ -14,6 +13,8 @@ import AuthProvider from './context/AuthProvider';
 import UserPrivateRoute from './privateRoute/UserPrivateRoute';
 import LoginPrivateRoute from './privateRoute/LoginPrivateRoute';
 import Peoples from './page/Peoples/Peoples/Peoples';
+import Send from './page/Send/Send/Send';
+import Receive from './page/Receive/Recive/Receive';
 
 AOS.init();
 
@@ -34,7 +35,8 @@ function App() {
               <Route element={<UserPrivateRoute />}>
                 <Route path="/peoples" element={<Peoples />} />
                 <Route path="/friends" element={<Friends />} />
-                <Route path="/message" element={<Message />} />
+                <Route path="/send" element={<Send />} />
+                <Route path="/receive" element={<Receive />} />
                 <Route path="/profile/:profileEmail" element={<Profile />} />
               </Route>
               <Route element={<LoginPrivateRoute />}>

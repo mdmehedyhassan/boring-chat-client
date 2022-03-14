@@ -57,7 +57,7 @@ const Peoples = () => {
         <div>
             <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">The All People</h1>
             <Link to="/friends" className="btn btn-primary">
-                <FontAwesomeIcon icon={faUserGroup} /> See Your Friends List
+                <FontAwesomeIcon icon={faUserGroup} /> See Your Following List
             </Link>
             <div className="row">
                 {

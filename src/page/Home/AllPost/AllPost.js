@@ -19,7 +19,7 @@ const AllPost = () => {
             <div className="row">
                 {
                     posts.length > 0 &&
-                    posts.map(post => <AllPostDetails key={post._id} post={post}></AllPostDetails>)
+                    posts.map(post => <AllPostDetails key={post._id} post={post} setPosts={setPosts}></AllPostDetails>)
                 }
             </div>
         </div>

@@ -11,15 +11,15 @@ import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faUser, faUserGroup, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { darkTheme, GlobalStyles, lightTheme } from '../../globalStye/globalStye';
-import { faLightbulb, faMoon } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope, faLightbulb, faMoon, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import useAuth from '../../hooks/useAuth';
 
 const drawerWidth = 150;
 
 function NavHeader(props) {
-    const {user, logoutHandler} = useAuth();
+    const { user, logoutHandler } = useAuth();
 
     const location = useLocation();
     const path = location.pathname;
@@ -33,44 +33,51 @@ function NavHeader(props) {
     };
 
     const drawer = (
-        <div style={{minHeight: '300%'}} className={`text-center ${isLightTheme ? 'bg-light': "bg-dark"}`}>
+        <div style={{ minHeight: '200%' }} className={`text-center ${isLightTheme ? 'bg-light' : "bg-dark"}`}>
             {/* <Toolbar /> */}
             <Link to={`/profile/${user?.email}`} style={{ textDecoration: 'none' }}>
                 <div className="d-flex justify-content-center m-1 ">
                     <div style={{ height: 55, width: 55, overflow: 'hidden', background: '#3f71cc', textAlign: 'center', borderRadius: '50%', color: 'white' }}>
                         {
-                            user?.photoURL ? 
-                            <img style={{width: 55, borderRadius: '50%'}} src={user?.photoURL} alt="" />
-                            :
-                            <div style={{fontSize: '50px'}}>
-                                <FontAwesomeIcon icon={faUser} />
-                            </div>
+                            user?.photoURL ?
+                                <img style={{ width: 55, borderRadius: '50%' }} src={user?.photoURL} alt="" />
+                                :
+                                <div style={{ fontSize: '50px' }}>
+                                    <FontAwesomeIcon icon={faUser} />
+                                </div>
                         }
                     </div>
                 </div>
                 <h5 className="fw-bolder">{user?.displayName}</h5>
             </Link>
             <br />
-            <Link style={{ textDecoration: 'none' }} to="/">
-                <List className={`link-hover-style ${path === '/' ? "active-link-style" : ""}`}>
-                    Home
-                </List>
-            </Link>
-            <Link style={{ textDecoration: 'none' }} to="/peoples">
-                <List className={`link-hover-style ${path === '/peoples' ? "active-link-style" : ""}`}>
-                    Peoples
-                </List>
-            </Link>
-            <Link style={{ textDecoration: 'none' }} to="/friends">
-                <List className={`link-hover-style ${path === '/friends' ? "active-link-style" : ""}`}>
-                    Friends
-                </List>
-            </Link>
-            <Link style={{ textDecoration: 'none' }} to="/message">
-                <List className={`link-hover-style ${path === '/message' ? "active-link-style" : ""}`}>
-                    Message
-                </List>
-            </Link>
+            <div className="text-start">
+                <Link style={{ textDecoration: 'none' }} to="/">
+                    <List className={`link-hover-style ps-2 ${path === '/' ? "active-link-style" : ""}`}>
+                        <FontAwesomeIcon icon={faHouse} /> Home
+                    </List>
+                </Link>
+                <Link style={{ textDecoration: 'none' }} to="/peoples">
+                    <List className={`link-hover-style ps-2 ${path === '/peoples' ? "active-link-style" : ""}`}>
+                        <FontAwesomeIcon icon={faUsers} /> Peoples
+                    </List>
+                </Link>
+                <Link style={{ textDecoration: 'none' }} to="/friends">
+                    <List className={`link-hover-style ps-2 ${path === '/friends' ? "active-link-style" : ""}`}>
+                        <FontAwesomeIcon icon={faUserGroup} /> Following
+                    </List>
+                </Link>
+                <Link style={{ textDecoration: 'none' }} to="/send">
+                    <List className={`link-hover-style ps-2 ${path === '/send' ? "active-link-style" : ""}`}>
+                        <FontAwesomeIcon icon={faPaperPlane} /> Send
+                    </List>
+                </Link>
+                <Link style={{ textDecoration: 'none' }} to="/receive">
+                    <List className={`link-hover-style ps-2 ${path === '/receive' ? "active-link-style" : ""}`}>
+                        <FontAwesomeIcon icon={faEnvelope} /> Receive
+                    </List>
+                </Link>
+            </div>
 
             {
                 user?.email ?
@@ -124,7 +131,7 @@ function NavHeader(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        <span className="fw-bolder">Boring Chat</span>
+                        <span className="fw-bolder"> Boring Chat</span>
                     </Typography>
                 </Toolbar>
             </AppBar>

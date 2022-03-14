@@ -9,7 +9,7 @@ const UserPost = ({ user }) => {
     const onSubmit = data => {
         const postData = {
             email: user?.email,
-            date: new Date().toLocaleString(),
+            date: new Date().toGMTString(),
             post: data.post,
             name: user?.name,
             img: user?.img

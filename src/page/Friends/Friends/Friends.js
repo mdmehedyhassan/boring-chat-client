@@ -16,9 +16,9 @@ const Friends = () => {
     console.log(getUser);
     return (
         <div>
-            <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">My Friends List</h1>
+            <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">Following</h1>
             <Link to="/peoples" className="btn btn-primary">
-               <FontAwesomeIcon icon={faUserGroup} /> Make More Friends
+               <FontAwesomeIcon icon={faUserGroup} /> Follow more
             </Link>
             <div className="row">
                 {
