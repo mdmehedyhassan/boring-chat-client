@@ -12,8 +12,6 @@ const Profile = () => {
     const { user } = useAuth();
     const { profileEmail } = useParams();
     const [getUser, setGetUser] = useState({});
-    console.log(user);
-    console.log(getUser);
     const [userPosts, setUserPosts] = useState([]);
     useEffect(() => {
         axios(`http://localhost:5000/users?email=${profileEmail}`)

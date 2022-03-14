@@ -38,18 +38,15 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 alert('Create unsuccessful. Please try again');
-                console.log(error)
             });
     }
 
     const signInWithEmailAndPasswordHandler = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                console.log(result)
             })
             .catch((error) => {
                 alert('sign in unsuccessful. Please try again');
-                console.log(error)
             });
     }
 
@@ -57,11 +54,9 @@ const useFirebase = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
-                console.log(result)
                 setGetUser({ name: result?.user?.displayName, email: result?.user?.email, img: result?.user?.photoURL})
             }).catch((error) => {
                 alert('Google sign in unsuccessful. Please try again');
-                console.log(error);
             });
     };
 

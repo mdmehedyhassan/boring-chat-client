@@ -18,7 +18,11 @@ const People = (props) => {
         <>
             {
                 allInOne.includes(email) === false &&
-                <div className="col-xxl-3 col-lg-4 col-sm-6 mt-2">
+                <div
+                    data-aos="flip-left"
+                    data-aos-easing="ease-out-cubic"
+                    data-aos-duration="2000"
+                    className="col-xxl-3 col-lg-4 col-sm-6 mt-2">
                     <div className="p-2 text-center h-100 people-global-style" style={{ borderRadius: '10px' }}>
                         {
                             img ?

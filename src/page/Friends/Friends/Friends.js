@@ -13,7 +13,6 @@ const Friends = () => {
         axios(`http://localhost:5000/users?email=${user?.email}`)
             .then(res => setGetUser(res.data))
     }, [user?.email]);
-    console.log(getUser);
     return (
         <div>
             <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">Following</h1>

@@ -12,7 +12,6 @@ const Login = () => {
     const location = useLocation();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        console.log(data)
         signInWithEmailAndPasswordHandler(data?.email, data?.password);
         reset();
     };

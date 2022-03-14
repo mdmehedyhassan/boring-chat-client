@@ -24,14 +24,18 @@ const SendDetails = (props) => {
     else if (days > 0) {
         postTimes = days + ' days ago';
     }
-    else{
+    else {
         postTimes = null;
     }
     return (
-        <div className="">
+        <div
+            data-aos="flip-down"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+            className="">
             <div className="m-2 p-2 text-end message-global-style">
                 <h5>
-                    <Link to={`/profile/${receiverEmail}`} style={{textDecoration: 'none' }}>
+                    <Link to={`/profile/${receiverEmail}`} style={{ textDecoration: 'none' }}>
                         {receiverName}
                     </Link>
                 </h5>

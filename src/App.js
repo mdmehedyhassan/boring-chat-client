@@ -18,7 +18,6 @@ import Receive from './page/Receive/Recive/Receive';
 
 AOS.init();
 
-//#0b5ed7
 function App() {
   return (
     <AuthProvider>

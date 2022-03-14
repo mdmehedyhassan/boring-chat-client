@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 
 const Friend = (props) => {
     const { register, handleSubmit, reset } = useForm();
-    console.log(props);
     const { user } = useAuth()
     const [friend, setFriend] = useState({});
     const { img, name, email } = friend;
@@ -49,7 +48,11 @@ const Friend = (props) => {
     };
     return (
 
-        <div className=" mt-2">
+        <div
+            data-aos="flip-down"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+            className=" mt-2">
             <div className="friendMessage" id={`friendMessage${email}`}>
                 <div className="p-2 d-flex justify-content-between align-items-center friend-global-style" style={{ borderRadius: '10px' }}>
                     <div className='d-flex align-items-center'>

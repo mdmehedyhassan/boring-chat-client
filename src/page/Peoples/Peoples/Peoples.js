@@ -26,7 +26,6 @@ const Peoples = () => {
             const newFriends = [...mainUser?.friends, getEmail];
             axios.put(`http://localhost:5000/users?addFriends=${mainUser?.email}`, newFriends)
                 .then(res => {
-                    console.log(res)
                     if (res.data?.acknowledged) {
                         alert("Make Friends Successfully!!")
                         axios(`http://localhost:5000/users?email=${user?.email}`)
@@ -51,7 +50,6 @@ const Peoples = () => {
                 })
         }
     }
-    // console.log(mainUser);
     const mainUserFriends = mainUser?.friends
     return (
         <div>

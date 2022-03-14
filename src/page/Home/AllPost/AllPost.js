@@ -12,7 +12,6 @@ const AllPost = () => {
                 setPosts(getAllPosts)
             })
     }, []);
-    console.log(posts)
     return (
         <div>
             <h1 className="border-bottom border-4 text-center border-danger text-danger fw-bolder">All Posts</h1>

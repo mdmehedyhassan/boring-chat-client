@@ -18,7 +18,6 @@ const AllPostDetails = (props) => {
     const presentTime = Date.parse(presentGMTTime);
     const postTime = Date.parse(date);
     const differentTime = presentTime - postTime;
-    console.log(differentTime);
     const minute = 1000 * 60;
     const hour = minute * 60;
     const day = hour * 24;
@@ -53,7 +52,6 @@ const AllPostDetails = (props) => {
                 ]
                 axios.put(`http://localhost:5000/posts/comment/${_id}`, updateComment)
                     .then(res => {
-                        console.log(res)
                         if (res.data?.acknowledged) {
                             axios(`http://localhost:5000/posts`)
                                 .then(res => {
@@ -75,7 +73,6 @@ const AllPostDetails = (props) => {
                 ]
                 axios.put(`http://localhost:5000/posts/comment/${_id}`, updateComment)
                     .then(res => {
-                        console.log(res)
                         if (res.data?.acknowledged) {
                             axios(`http://localhost:5000/posts`)
                                 .then(res => {
@@ -91,11 +88,13 @@ const AllPostDetails = (props) => {
         if (!user?.email) {
             alert('Sorry You cannot comment with out any account')
         }
-        console.log(data)
     };
-    console.log(postComments)
     return (
-        <div className="mt-3 p-3 post-global-style">
+        <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+            className="mt-3 p-3 post-global-style">
             <div className="d-flex">
                 <div style={{ height: 55, width: 55, overflow: 'hidden', background: '#3f71cc', textAlign: 'center', borderRadius: '50%', color: 'white' }}>
                     {
@@ -126,7 +125,7 @@ const AllPostDetails = (props) => {
                                 key={index}
                             >
                                 <p>
-                                    <Link to={`/profile/${getComment.authorEmails}`} style={{textDecoration: 'none' }}>
+                                    <Link to={`/profile/${getComment.authorEmails}`} style={{ textDecoration: 'none' }}>
                                         {getComment.commentAuthors}
                                     </Link>
                                     : {getComment.comments}

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ReceiveDetails = (props) => {
-    console.log(props.message)
     const { time, senderName, message, senderEmail } = props.message;
     const presentGMTTime = new Date().toGMTString();
     const presentTime = Date.parse(presentGMTTime);
@@ -25,14 +24,18 @@ const ReceiveDetails = (props) => {
     else if (days > 0) {
         postTimes = days + ' days ago';
     }
-    else{
+    else {
         postTimes = null;
     }
     return (
-        <div className="">
+        <div
+            data-aos="flip-down"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+            className="">
             <div className="m-2 p-2 message-global-style">
                 <h5>
-                    <Link to={`/profile/${senderEmail}`} style={{textDecoration: 'none' }}>
+                    <Link to={`/profile/${senderEmail}`} style={{ textDecoration: 'none' }}>
                         {senderName}
                     </Link>
                 </h5>
