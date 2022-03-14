@@ -14,12 +14,12 @@ const Profile = () => {
     const [getUser, setGetUser] = useState({});
     const [userPosts, setUserPosts] = useState([]);
     useEffect(() => {
-        axios(`http://localhost:5000/users?email=${profileEmail}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/users?email=${profileEmail}`)
             .then(res => setGetUser(res.data))
     }, [profileEmail]);
 
     useEffect(() => {
-        axios(`http://localhost:5000/userPosts/${profileEmail}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/userPosts/${profileEmail}`)
             .then(res => setUserPosts(res.data))
     }, [profileEmail]);
 
@@ -33,7 +33,7 @@ const Profile = () => {
             time: new Date().toGMTString()
         }
 
-        axios.post(`http://localhost:5000/sendMessage`, sendMessage)
+        axios.post(`https://fierce-thicket-37124.herokuapp.com/sendMessage`, sendMessage)
             .then(res => {
                 if (res.data?.insertedId) {
                     alert('Message Send Successfully!!');

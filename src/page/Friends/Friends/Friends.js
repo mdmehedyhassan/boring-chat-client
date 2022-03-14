@@ -10,7 +10,7 @@ const Friends = () => {
     const {user} = useAuth();
     const [getUser, setGetUser] = useState({});
     useEffect(() => {
-        axios(`http://localhost:5000/users?email=${user?.email}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/users?email=${user?.email}`)
             .then(res => setGetUser(res.data))
     }, [user?.email]);
     return (

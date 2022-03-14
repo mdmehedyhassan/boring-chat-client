@@ -12,7 +12,7 @@ const Friend = (props) => {
     const [friend, setFriend] = useState({});
     const { img, name, email } = friend;
     useEffect(() => {
-        axios(`http://localhost:5000/users?email=${props.friend}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/users?email=${props.friend}`)
             .then(res => setFriend(res.data));
     }, [props.friend])
 
@@ -33,7 +33,7 @@ const Friend = (props) => {
             time: new Date().toGMTString()
         }
 
-        axios.post(`http://localhost:5000/sendMessage`, sendMessage)
+        axios.post(`https://fierce-thicket-37124.herokuapp.com/sendMessage`, sendMessage)
             .then(res => {
                 if (res.data?.insertedId) {
                     alert('Message Send Successfully!!');

@@ -50,10 +50,10 @@ const AllPostDetails = (props) => {
                         comments: data.comment
                     }
                 ]
-                axios.put(`http://localhost:5000/posts/comment/${_id}`, updateComment)
+                axios.put(`https://fierce-thicket-37124.herokuapp.com/posts/comment/${_id}`, updateComment)
                     .then(res => {
                         if (res.data?.acknowledged) {
-                            axios(`http://localhost:5000/posts`)
+                            axios(`https://fierce-thicket-37124.herokuapp.com/posts`)
                                 .then(res => {
                                     let getAllPosts = []
                                     res.data.map(post => getAllPosts = [post, ...getAllPosts])
@@ -71,10 +71,10 @@ const AllPostDetails = (props) => {
                         comments: data.comment
                     }
                 ]
-                axios.put(`http://localhost:5000/posts/comment/${_id}`, updateComment)
+                axios.put(`https://fierce-thicket-37124.herokuapp.com/posts/comment/${_id}`, updateComment)
                     .then(res => {
                         if (res.data?.acknowledged) {
-                            axios(`http://localhost:5000/posts`)
+                            axios(`https://fierce-thicket-37124.herokuapp.com/posts`)
                                 .then(res => {
                                     let getAllPosts = []
                                     res.data.map(post => getAllPosts = [post, ...getAllPosts])

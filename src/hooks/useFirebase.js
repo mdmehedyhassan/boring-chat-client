@@ -13,7 +13,7 @@ const useFirebase = () => {
 
     useEffect(() => {
         if (getUser?.email) {
-            const isNewUser = axios.put(`http://localhost:5000/users?addUser=${getUser?.email}`, getUser)
+            const isNewUser = axios.put(`https://fierce-thicket-37124.herokuapp.com/users?addUser=${getUser?.email}`, getUser)
                 .then()
             return () => isNewUser;
         }

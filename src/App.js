@@ -15,6 +15,7 @@ import LoginPrivateRoute from './privateRoute/LoginPrivateRoute';
 import Peoples from './page/Peoples/Peoples/Peoples';
 import Send from './page/Send/Send/Send';
 import Receive from './page/Receive/Recive/Receive';
+import Footer from './page/Footer/Footer';
 
 AOS.init();
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/signIn" element={<SignIn />} />
               </Route>
             </Routes>
+            <Footer/>
           </div>
         </Box>
       </Box>

@@ -11,11 +11,11 @@ const Peoples = () => {
     const [peoples, setPeoples] = useState([]);
     const [mainUser, setMainUser] = useState({})
     useEffect(() => {
-        axios('http://localhost:5000/users')
+        axios('https://fierce-thicket-37124.herokuapp.com/users')
             .then(res => setPeoples(res.data))
     }, []);
     useEffect(() => {
-        axios(`http://localhost:5000/users?email=${user?.email}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/users?email=${user?.email}`)
             .then(res => {
                 setMainUser(res.data);
             })
@@ -24,11 +24,11 @@ const Peoples = () => {
     const addFriendEmail = getEmail => {
         if (mainUser?.friends) {
             const newFriends = [...mainUser?.friends, getEmail];
-            axios.put(`http://localhost:5000/users?addFriends=${mainUser?.email}`, newFriends)
+            axios.put(`https://fierce-thicket-37124.herokuapp.com/users?addFriends=${mainUser?.email}`, newFriends)
                 .then(res => {
                     if (res.data?.acknowledged) {
                         alert("Make Friends Successfully!!")
-                        axios(`http://localhost:5000/users?email=${user?.email}`)
+                        axios(`https://fierce-thicket-37124.herokuapp.com/users?email=${user?.email}`)
                             .then(res => {
                                 setMainUser(res.data);
                             })
@@ -38,11 +38,11 @@ const Peoples = () => {
 
         if (!mainUser?.friends) {
             const newFriends = [getEmail]
-            axios.put(`http://localhost:5000/users?addFriends=${mainUser?.email}`, newFriends)
+            axios.put(`https://fierce-thicket-37124.herokuapp.com/users?addFriends=${mainUser?.email}`, newFriends)
                 .then(res => {
                     if (res.data?.acknowledged) {
                         alert("Make Friends Successfully!!")
-                        axios(`http://localhost:5000/users?email=${user?.email}`)
+                        axios(`https://fierce-thicket-37124.herokuapp.com/users?email=${user?.email}`)
                             .then(res => {
                                 setMainUser(res.data);
                             })

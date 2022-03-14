@@ -14,7 +14,7 @@ const UserPost = ({ user }) => {
             name: user?.name,
             img: user?.img
         }
-        axios.post(`http://localhost:5000/posts`, postData)
+        axios.post(`https://fierce-thicket-37124.herokuapp.com/posts`, postData)
             .then(res => {
                 if(res?.data?.insertedId){
                     alert("You post added Successfully!!!")

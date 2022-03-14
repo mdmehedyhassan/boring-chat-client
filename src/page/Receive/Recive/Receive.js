@@ -7,7 +7,7 @@ const Receive = () => {
     const { user } = useAuth();
     const [receiveMessage, setReceiveMessage] = useState([]);
     useEffect(() => {
-        axios(`http://localhost:5000/receiveMessage/${user?.email}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/receiveMessage/${user?.email}`)
             .then(res => {
                 let getAllMessage = []
                 res.data?.map(receive => getAllMessage = [receive, ...getAllMessage])

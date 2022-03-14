@@ -7,7 +7,7 @@ const Send = () => {
     const { user } = useAuth();
     const [sendMessage, setSendMessage] = useState([]);
     useEffect(() => {
-        axios(`http://localhost:5000/sendMessage/${user?.email}`)
+        axios(`https://fierce-thicket-37124.herokuapp.com/sendMessage/${user?.email}`)
             .then(res => {
                 let getAllMessage = []
                 res.data?.map(send => getAllMessage = [send, ...getAllMessage])

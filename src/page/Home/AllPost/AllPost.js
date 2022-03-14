@@ -5,7 +5,7 @@ import AllPostDetails from '../AllPostDetails/AllPostDetails';
 const AllPost = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        axios('http://localhost:5000/posts')
+        axios('https://fierce-thicket-37124.herokuapp.com/posts')
             .then(res => {
                 let getAllPosts = []
                 res.data.map(post => getAllPosts = [post, ...getAllPosts])

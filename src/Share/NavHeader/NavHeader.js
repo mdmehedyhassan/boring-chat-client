@@ -93,7 +93,6 @@ function NavHeader(props) {
                         </List>
                     </Link>
             }
-
             <List className="m-2">
                 <button onClick={() => setIsLightTheme(!isLightTheme)} className={`btn fw-bold rounded-circle ${isLightTheme ? 'btn-dark' : 'btn-light'}`}>
                     {
@@ -104,6 +103,7 @@ function NavHeader(props) {
                     }
                 </button>
             </List>
+
         </div>
     );
 
