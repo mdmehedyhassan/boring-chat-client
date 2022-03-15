@@ -2,13 +2,14 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import userPng from '../../../images/images/user.png';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 
 
 const AllPostDetails = (props) => {
+    const navigate = useNavigate();
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
 
@@ -86,7 +87,9 @@ const AllPostDetails = (props) => {
             }
         }
         if (!user?.email) {
-            alert('Sorry You cannot comment with out any account')
+            if(window.confirm('Sorry You cannot comment with out any account, Are you Like to create a new account')){
+                navigate("/signIn");
+            }
         }
     };
     return (
