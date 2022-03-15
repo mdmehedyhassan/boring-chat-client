@@ -5,10 +5,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className="border-top border-5 border-primary pt-3 mt-5 text-center">
+        <div className="border-top border-5 border-danger pt-3 mt-5 text-center">
             <p><small>C Mehedy Hassan 2022</small></p>
-            <a href="https://github.com/mdmehedyhassan/boring-chat-client" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary m-1">Client code</a>
-            <a href="https://github.com/mdmehedyhassan/boring-chat-server" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary m-1">Server code</a>
             <a href="https://mehedy-portfolio.web.app/" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary m-1 rounded-circle">
                 <FontAwesomeIcon icon={faUserTie} />
             </a>
@@ -21,6 +19,9 @@ const Footer = () => {
             <a href="https://www.facebook.com/mehedysr" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary m-1 rounded-circle">
                 <FontAwesomeIcon icon={faFacebook} />
             </a>
+            <br />
+            <a href="https://github.com/mdmehedyhassan/boring-chat-client" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary m-1">Client code</a>
+            <a href="https://github.com/mdmehedyhassan/boring-chat-server" target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary m-1">Server code</a>
 
         </div>
     );

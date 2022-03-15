@@ -11,7 +11,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faUser, faUserGroup, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRightToBracket, faUser, faUserGroup, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { darkTheme, GlobalStyles, lightTheme } from '../../globalStye/globalStye';
 import { faEnvelope, faLightbulb, faMoon, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import useAuth from '../../hooks/useAuth';
@@ -87,9 +87,9 @@ function NavHeader(props) {
                         </button>
                     </List>
                     :
-                    <Link style={{ textDecoration: 'none' }} to="/login">
-                        <List className={`link-hover-style ${path === '/login' ? "active-link-style" : ""}`}>
-                            Login
+                    <Link style={{ textDecoration: 'none', textAlign:'start' }} to="/login">
+                        <List className={`link-hover-style ps-2 ${path === '/login' ? "active-link-style" : ""}`}>
+                            <FontAwesomeIcon icon={faRightToBracket} /> Login
                         </List>
                     </Link>
             }

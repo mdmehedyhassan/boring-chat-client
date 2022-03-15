@@ -11,6 +11,11 @@ const AllPost = () => {
                 res.data.map(post => getAllPosts = [post, ...getAllPosts])
                 setPosts(getAllPosts)
             })
+            .catch(error => {
+                if(window.confirm('Please click OK or reload this page')){
+                    window.location.reload();
+                }
+            })
     }, []);
     return (
         <div>
